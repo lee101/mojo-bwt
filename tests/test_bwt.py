@@ -252,7 +252,7 @@ def test_decode_inverts_bzip2_columns_for_rle1_free_inputs():
         if b"aaaa" in data or b"\x00\x00\x00\x00" in data:
             continue
         column, orig_ptr = bz2ref.last_column_of(bz2.compress(data))
-        assert bz2ref.rle1_decode(data) == data or True  # sanity: helper runs
+        assert bz2ref.rle1_decode(data) == data  # sanity: helper runs, input is RLE1-free
         block = mojo_bwt.decode(column, orig_ptr)
         assert bz2ref.rle1_decode(block) == data
         last, primary = mojo_bwt.encode(block)

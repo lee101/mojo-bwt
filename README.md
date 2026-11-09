@@ -101,14 +101,14 @@ Python, because a permutation walk has no vectorised form.
 
 | case | reference | mojo-bwt | result |
 | --- | ---: | ---: | ---: |
-| histogram, 1 MiB | 6.63 ms | 1.15 ms | 5.75x faster |
-| rle encode, 1 MiB | 260.57 ms | 17.98 ms | 14.49x faster |
-| suffix sort, 1 MiB text (2 MiB doubled) | 42350.87 ms | 13070.72 ms | 3.24x faster |
-| bwt encode, 1 MiB | 31214.77 ms | 10476.19 ms | 2.98x faster |
-| bwt inverse, 1 MiB | 1677.16 ms | 312.14 ms | 5.37x faster |
+| histogram, 1 MiB | 2.43 ms | 0.67 ms | 3.63x faster |
+| rle encode, 1 MiB | 93.13 ms | 2.41 ms | 38.64x faster |
+| suffix sort, 1 MiB text (2 MiB doubled) | 8394.61 ms | 1560.59 ms | 5.38x faster |
+| bwt encode, 1 MiB | 8372.46 ms | 1657.76 ms | 5.05x faster |
+| bwt inverse, 1 MiB | 607.77 ms | 26.36 ms | 23.06x faster |
 
-Read those absolute numbers honestly: ten seconds to transform a megabyte is
-slow in absolute terms, and it is slow because prefix doubling needs `log2(2n)`
+Read those absolute numbers honestly: over a second and a half to transform a
+megabyte is slow in absolute terms, and it is slow because prefix doubling needs `log2(2n)`
 rounds, each a full pass over the doubled text. The wins come from the compiled
 inner loops beating Python and NumPy bookkeeping on the same algorithm, not from
 a better algorithm. A real codec would use SA-IS and get the sort down to a
