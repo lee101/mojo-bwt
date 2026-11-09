@@ -101,11 +101,11 @@ Python, because a permutation walk has no vectorised form.
 
 | case | reference | mojo-bwt | result |
 | --- | ---: | ---: | ---: |
-| histogram, 1 MiB | 2.43 ms | 0.67 ms | 3.63x faster |
-| rle encode, 1 MiB | 93.13 ms | 2.41 ms | 38.64x faster |
-| suffix sort, 1 MiB text (2 MiB doubled) | 8394.61 ms | 1560.59 ms | 5.38x faster |
-| bwt encode, 1 MiB | 8372.46 ms | 1657.76 ms | 5.05x faster |
-| bwt inverse, 1 MiB | 607.77 ms | 26.36 ms | 23.06x faster |
+| histogram, 1 MiB | 2.36 ms | 0.71 ms | 3.34x faster |
+| rle encode, 1 MiB | 92.65 ms | 2.64 ms | 35.03x faster |
+| suffix sort, 1 MiB text (2 MiB doubled) | 8137.84 ms | 1526.82 ms | 5.33x faster |
+| bwt encode, 1 MiB | 8100.79 ms | 1626.87 ms | 4.98x faster |
+| bwt inverse, 1 MiB | 596.45 ms | 24.39 ms | 24.45x faster |
 
 Read those absolute numbers honestly: over a second and a half to transform a
 megabyte is slow in absolute terms, and it is slow because prefix doubling needs `log2(2n)`
