@@ -158,11 +158,18 @@ def bwt_last_column(
     The rows of the rotation matrix are exactly the suffix positions below `n`
     of the suffix array of `T + T`; dropping the sentinel row and the wrapped
     rows leaves the `n` rotations in order.  Returns 0, or -4 if the suffix
-    array did not hold exactly `n` rows in `0 .. n - 1`."""
+    array did not hold exactly `n` rows in `0 .. n - 1`.  Empty input matches
+    bwt.encode's empty case: primary 0 (the loop below never sets it, so the
+    -1 placeholder must not leak)."""
     var s = ip(s_addr)
     var sa = ip(sa_addr)
     var lf = up(lf_addr)
     var slot = ip(primary_addr)
+    if n <= 0:
+        # Matches bwt.encode's empty case (tests/test_bwt.py::test_encode_empty_input_matches_rotation_sort):
+        # encode returns primary 0 for empty input, so last_column must too.
+        slot[unsafe_offset=0] = Int32(0)
+        return Int32(0)
     var m: Int = 0
     var primary: Int = -1
     for k in range(1, n_total):
